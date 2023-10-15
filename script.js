@@ -1,13 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
   const avatar = document.querySelector("#avatar");
   const stage = document.querySelector("#stage");
+  const reward = document.querySelector("#reward");
+  const obstacle = document.querySelector("#obstacle");
 
   const stageRect = stage.getBoundingClientRect();
+  const avatarRect = stage.getBoundingClientRect();
+  const rewardRect = stage.getBoundingClientRect();
+
+  console.log("reward", reward);
 
   avatar.style.top = Math.round(stageRect.top) + "px";
   avatar.style.left = Math.round(stageRect.left) + "px";
 
-  console.log("stage", stage);
+  reward.style.display = "inline-block";
+
+  function getRandomRewardPos() {
+    let randomPos = getRandomPos();
+    reward.style.left = Math.round(stageRect.left) + randomPos[0] + "px";
+    reward.style.top = Math.round(stageRect.top) + randomPos[1] + "px";
+  }
+
+  getRandomRewardPos();
 
   function move(e) {
     console.log("event", e, avatar);
@@ -24,8 +38,13 @@ document.addEventListener("DOMContentLoaded", function () {
       case "ArrowRight":
         console.log("rightttt");
         newX = xNum + 100;
-        if (newX <= stageRect.right) {
+        if (newX <= stageRect.right - 100) {
           avatar.style.left = newX + "px";
+        }
+        if (hasCollision(avatar, reward)) {
+          console.log("collision!");
+          let randomPos = getRandomRewardPos();
+          // while(randomPos)
         }
         break;
       case "ArrowLeft":
@@ -34,6 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (newX >= stageRect.left) {
           avatar.style.left = newX + "px";
         }
+        if (hasCollision(avatar, reward)) {
+          console.log("collision!");
+          getRandomRewardPos();
+        }
         break;
       case "ArrowDown":
         console.log("downnnn");
@@ -41,12 +64,20 @@ document.addEventListener("DOMContentLoaded", function () {
         if (newY <= stageRect.bottom - 100) {
           avatar.style.top = newY + "px";
         }
+        if (hasCollision(avatar, reward)) {
+          console.log("collision!");
+          getRandomRewardPos();
+        }
         break;
       case "ArrowUp":
         console.log("upppp");
         newY = yNum - 100;
         if (newY >= stageRect.top) {
           avatar.style.top = newY + "px";
+        }
+        if (hasCollision(avatar, reward)) {
+          console.log("collision!");
+          getRandomRewardPos();
         }
         break;
     }
