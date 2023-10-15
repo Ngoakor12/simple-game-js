@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* min-height: 100vh; */
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#stage {
+  background-color: brown;
+  height: 600px;
+  width: 600px;
+  border-radius: 5px;
+}
+
+#avatar {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  background-color: aquamarine;
+  border-radius: 5px;
+  position: absolute;
+}
