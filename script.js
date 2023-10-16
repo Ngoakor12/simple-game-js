@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const stage = document.querySelector("#stage");
   const reward = document.querySelector("#reward");
   const obstacle = document.querySelector("#obstacle");
+  const pointsContainer = document.querySelector(".points-container");
+  const points = document.querySelector(".points");
 
   const stageRect = stage.getBoundingClientRect();
   const avatarRect = stage.getBoundingClientRect();
@@ -43,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (hasCollision(avatar, reward)) {
           console.log("collision!");
-          let randomPos = getRandomRewardPos();
-          // while(randomPos)
+          getRandomRewardPos();
+          points.textContent = " " + (Number(points.textContent) + 1);
         }
         break;
       case "ArrowLeft":
@@ -56,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (hasCollision(avatar, reward)) {
           console.log("collision!");
           getRandomRewardPos();
+          points.textContent = " " + (Number(points.textContent) + 1);
         }
         break;
       case "ArrowDown":
@@ -67,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (hasCollision(avatar, reward)) {
           console.log("collision!");
           getRandomRewardPos();
+          points.textContent = " " + (Number(points.textContent) + 1);
         }
         break;
       case "ArrowUp":
@@ -78,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (hasCollision(avatar, reward)) {
           console.log("collision!");
           getRandomRewardPos();
+          points.textContent = " " + (Number(points.textContent) + 1);
         }
         break;
     }
